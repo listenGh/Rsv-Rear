@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.ShiShengXinXiDao">
+
+    <select id="getAllStudent" resultType="com.gh.rsv.bean.Student">
+        select * from students
+    </select>
+
+
+    <update id="updateStudent">
+        update students set sex = '${sex}',classes = '${classes}' where username = '${username}'
+    </update>
+
+    <update id="updateStudentPersonal">
+        update students set sex = '${sex}',classes = '${classes}',
+         password = '${password}',email = '${email}' where username = '${username}'
+    </update>
+
+    <select id="getAllTeacher" resultType="com.gh.rsv.bean.Teacher">
+        select * from teachers
+    </select>
+
+
+    <update id="updateTeacher">
+        update teachers set sex = '${sex}',XueYuan = '${XueYuan}' where username = '${username}'
+    </update>
+
+    <update id="updateTeacherPersonal">
+        update teachers set sex = '${sex}',
+         password = '${password}',email = '${email}' where username = '${username}'
+    </update>
+
+</mapper>

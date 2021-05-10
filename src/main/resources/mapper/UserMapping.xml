@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.UserDao">
+    <select id="getUserByMessage" resultType="com.gh.rsv.bean.User">
+        select * from users
+        where username=#{username} and password=#{password} and state=1
+    </select>
+    <select id="getAllUser" resultType="com.gh.rsv.bean.User">
+        SELECT * FROM (SELECT TOP ${pageSize} * FROM (SELECT TOP  (${pageSize}*${pageStart})  *
+        FROM users where username like '%${username}%'
+        ORDER BY id asc) as b ORDER BY id desc) as c ORDER BY id asc
+    </select>
+    <select id="getUserCounts" resultType="java.lang.Integer">
+        select count(*) from users where username like '%${username}%'
+    </select>
+    <update id="updateState">
+        update users set state = #{state} where id = #{id}
+    </update>
+    <insert id="addUser">
+        insert users values(#{username},#{password},#{email},#{role},#{state})
+    </insert>
+    <delete id="deleteUser">
+        delete users where id = #{id}
+    </delete>
+    <select id="getUserById" resultType="com.gh.rsv.bean.User">
+        select * from users where id = ${id}
+    </select>
+    <update id="updateUser">
+        UPDATE users SET password = #{password}, email = #{email} WHERE id= #{id}
+    </update>
+    <insert id="insertStudent">
+        insert students values(#{student.username},#{student.password},#{student.sex},
+        #{student.classes},#{student.email},#{student.role},#{student.credit})
+    </insert>
+    <insert id="insertTeacher">
+        insert teachers values(#{teacher.username},#{teacher.password},#{teacher.sex},
+        #{teacher.XueYuan},#{teacher.email},#{teacher.role})
+    </insert>
+</mapper>

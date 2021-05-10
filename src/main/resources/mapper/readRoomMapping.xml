@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.readRoomDao">
+    <select id="getAllReadRoomInfo" resultType="com.gh.rsv.bean.readRoomInfo">
+        select * from readRoomInfo
+    </select>
+
+    <select id="getListOfZH" resultType="com.gh.rsv.bean.hasReserv">
+        select * from hasReserv where readRoom='${room}' and ((startTime between '${startTime}'
+        and '${endTime}' ) or (endTime between '${startTime}' and '${endTime}' ))
+    </select>
+
+    <select id="getStandardOfReadRoom" resultType="java.lang.Integer">
+        select limit from readRoomClass where type='${type}'
+    </select>
+
+    <select id="getCreditOfStudent" resultType="java.lang.Integer">
+        select credit from students where username='${username}'
+    </select>
+
+    <select id="getTypeOfReadRoom" resultType="java.lang.String">
+        select type from readRoomInfo where name = '${room}'
+    </select>
+
+    <insert id="insertHasReserv">
+        insert hasReserv values('${hR.username}','${hR.readRoom}','${hR.num}','${hR.startTime}','${hR.endTime}')
+    </insert>
+
+    <update id="updatePositionInfo">
+        UPDATE positionInfo SET state = '${state}', startTime = '${startTime}', endTime = '${endTime}' WHERE num= '${num}' and mid='${name}'
+    </update>
+
+    <select id="getNOfReadRoom" resultType="com.gh.rsv.bean.readRoomInfo">
+        select * from readRoomInfo where name = '${name}'
+    </select>
+
+    <select id="getListOfAllHasReserv" resultType="com.gh.rsv.bean.hasReserv">
+        select * from hasReserv
+    </select>
+
+    <select id="getListOfSTHasReserv" resultType="com.gh.rsv.bean.hasReserv">
+       select * from hasReserv where readRoom='${room}' and ((startTime between '${startTime}'
+        and '${endTime}' ) or (endTime between '${startTime}' and '${endTime}' ))
+    </select>
+
+    <insert id="insertDeduction">
+        insert Deduction values('${jBusername}','${bjBusername}','${dates}','${content}',0,0)
+    </insert>
+
+    <select id="getListOfGRHasReserv" resultType="com.gh.rsv.bean.hasReserv">
+        select * from hasReserv where username = '${username}'
+    </select>
+
+    <delete id="deleteHasReserv">
+        delete hasReserv where id = #{id}
+    </delete>
+
+</mapper>

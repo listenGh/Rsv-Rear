@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.JiaoLiuGuanliDao">
+    <select id="getAllInfoCommunication" resultType="com.gh.rsv.bean.infoCommunication">
+        select * from infoCommunication
+    </select>
+
+    <select id="getSomeoneReply" resultType="com.gh.rsv.bean.reply">
+        select * from reply where mid = #{mid}
+    </select>
+
+    <insert id="addInfoCommunication">
+        insert infoCommunication values(#{sendUsername},#{dates},#{title})
+    </insert>
+
+    <insert id="addReply">
+        insert reply values(#{replyUsername},#{dates},#{content},#{mid})
+    </insert>
+</mapper>

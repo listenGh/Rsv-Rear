@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.YueLanShiDao">
+
+    <select id="getAllReadClass" resultType="com.gh.rsv.bean.ReadRoomClass">
+        select * from readRoomClass
+    </select>
+
+    <select id="getAllreadRoomInfo" resultType="com.gh.rsv.bean.readRoomInfo">
+        select * from readRoomInfo
+    </select>
+
+    <insert id="addReadRoomClass">
+        insert readRoomClass values('${type}',${limit});
+    </insert>
+
+    <insert id="addReadRoomInfo">
+        insert readRoomInfo values('${rRI.name}','${rRI.type}',${rRI.row},${rRI.col},${rRI.sum});
+    </insert>
+
+    <insert id="addpositionInfo">
+        insert positionInfo values(${num},0,'','','${mid}');
+    </insert>
+
+</mapper>

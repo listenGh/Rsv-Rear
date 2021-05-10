@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.TongZhiGongGaoDao">
+
+    <select id="getAllNotiInfo" resultType="com.gh.rsv.bean.notiInfo">
+        select * from notiInfo
+    </select>
+
+    <select id="getSomeoneNotiInfo" resultType="com.gh.rsv.bean.notiInfo">
+        select * from notiInfo where id = #{id}
+    </select>
+
+    <insert id="addNoticeInfo">
+        insert notiInfo values(#{title},#{dates},#{content})
+    </insert>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gh.rsv.Dao.XinYongJiFen">
+    <select id="getAllDeduction" resultType="com.gh.rsv.bean.Deduction">
+        select * from Deduction where state = 0
+    </select>
+
+    <update id="updateDeduction">
+        UPDATE Deduction SET state = 1, kf = #{kf} WHERE id = #{id}
+    </update>
+
+    <update id="updateStudents">
+        UPDATE Students SET credit = credit - #{kf} WHERE username= '${bjb}'
+    </update>
+
+    <insert id="insertDeduction">
+        insert Deduction values('${jb}','${bjb}','${date}','${info}',${kf},${state});
+    </insert>
+
+    <select id="getAllStudents" resultType="com.gh.rsv.bean.Student">
+        select * from Students
+    </select>
+
+    <select id="getOneStudent" resultType="com.gh.rsv.bean.Student">
+        select * from Students where username = #{username}
+    </select>
+
+    <select id="getOneTeacher" resultType="com.gh.rsv.bean.Teacher">
+        select * from teachers where username = #{username}
+    </select>
+
+
+    <select id="getSomeoneDeductions" resultType="com.gh.rsv.bean.Deduction">
+        select * from Deduction where state = 1 and bJBusername = '${username}'
+    </select>
+
+</mapper>
